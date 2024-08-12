@@ -1,22 +1,7 @@
- / <reference types="Cypress" />
-describe('Invalid & Valid login', function () {
-    it('Invalid login', function (){
-        cy.visit("http://moserbus.local/")
-        cy.get("a[class='ms-btn-lg ms-btn-primary']").click()
-        console.log('Opened Sign Up page')
-        cy.wait(2000)
-        cy.get(".text-link.para-16").click()
-        console.log('Opened Login page')
-        cy.wait(2000)
-        cy.get("input[name='email']").type('himanshupant.qa2@gmail.com')
-        cy.wait(2000)
-        cy.get("button[type='submit']").click()
-        cy.wait(2000)
-        cy.get('.font-16.text-grey.text-center').should('be.visible')
-        cy.wait(2000)
-    })
-    it('First Test case', function () {
+describe('Dashboard Tests', () => {
 
+    beforeEach(() => {
+      // Login before each test
         cy.visit("http://moserbus.local/")
         cy.get("a[class='ms-btn-lg ms-btn-primary']").click()
         console.log('Opened Sign Up page')
@@ -32,7 +17,21 @@ describe('Invalid & Valid login', function () {
         console.log('Logged in Successfully')
         cy.wait(2000)
         cy.get("#main-app > div > div > div > div.bg-simple-pattern.d-flex.h-100.justify-content-between.flex-column > div > div > div > form > div.text-end.mt-4.w-100 > button").click()
-        cy.url().should('include', '/dashboard')
-        
+        cy.url().should('eq', 'http://bcci.moserbus.local/dashboard')
     })
-})
+  
+    it('should display the Dashboard text on home page', () => {
+      cy.get('#main-app > div.page-wrapper > div > div > div.content-head.bg-main > div > div.left > h4').should('contain', 'Dashboard')
+    })
+  
+    it('should log out successfully', () => {
+      cy.get('.d-flex.align-items-center.position-relative.profile-icon').should('be.visible').click()
+      cy.wait(2000)
+      cy.get('item d-flex align-items-center gap-12 logout').click()
+      cy.wait(2000)
+      cy.url().should('include', '/login')
+      console.log('Test passed successfully')
+    })
+  
+  })
+  
