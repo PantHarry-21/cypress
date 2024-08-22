@@ -1,5 +1,5 @@
  / <reference types="Cypress" />
-describe('Invalid & Valid login', function () {
+describe('Invalid login', function () {
     it('Invalid login', function (){
         cy.visit("http://moserbus.local/")
         cy.get("a[class='ms-btn-lg ms-btn-primary']").click()
@@ -15,7 +15,7 @@ describe('Invalid & Valid login', function () {
         cy.get('.font-16.text-grey.text-center').should('be.visible')
         cy.wait(2000)
     })
-    it('First Test case', function () {
+    it('Valid login', function () {
 
         cy.visit("http://moserbus.local/")
         cy.get("a[class='ms-btn-lg ms-btn-primary']").click()
