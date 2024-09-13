@@ -3,10 +3,17 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://moserbus.local/',
-     // Exclude certain test files or folders from being run
-     excludeSpecPattern: ['./cypress/Integration/Examples/exclude'],
+
+    // Specify the custom test file to run
+    specPattern: [
+      'cypress/e2e/tests/log-in.cy.js',
+      'cypress/e2e/tests/addDeal.cy.js',
+      'cypress/e2e/tests/addEvent.cy.js',
+      'cypress/e2e/test cases/addDealScenarios.cy.js',
+      'cypress/e2e/test cases/login-scenarios.cy.js'
+    ],
      // Folder where the test results will be saved
-    supportFile: 'cypress/support/index.js',
+    supportFile: '/home/agami-l83/Desktop/Moserbus-Cypress/cypress/support/index.js',
 
     // Directory where Cypress should save screenshots taken during test runs
     screenshotsFolder: 'cypress/screenshots',
@@ -25,16 +32,7 @@ module.exports = defineConfig({
       // Retry twice for `cypress open`
       openMode: 2,
     },
-
-    // setupNodeEvents(on, config) {
-    //   // Add any node event listeners here if needed
-    //   // For example, handling custom commands, logging, etc.
-    //   on('task', {
-    //     log(message) {
-    //       console.log(message);
-    //       return null;
-        },
-
+},
     // Set up the environment variables
     env: {
       apiUrl: 'http://moserbus.local/api',
